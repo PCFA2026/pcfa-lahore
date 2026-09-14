@@ -2,25 +2,47 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1f2a44;
+  /* Primary institutional navy - the same navy used on the Become a Member page */
+  --brand-blue: #082a5e;
+  /* Darker step of the same navy - hover / pressed states only */
+  --brand-blue-dark: #061f47;
+  /* Primary institutional red */
+  --brand-red: #c8102e;
+  /* Darker step of the same red - hover / pressed states only */
+  --brand-red-dark: #9e0c23;
+  --brand-slate: #46536b;
+  --brand-light: #f5f7fb;
+  --brand-green: #046a38;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-dark: var(--brand-blue-dark);
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-dark: var(--brand-red-dark);
+  --color-brand-slate: var(--brand-slate);
+  --color-brand-light: var(--brand-light);
+  --color-brand-green: var(--brand-green);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "PingFang SC", "Microsoft YaHei", Arial,
+    Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--brand-blue);
+  color: #fff;
 }

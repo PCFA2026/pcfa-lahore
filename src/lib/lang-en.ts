@@ -1,0 +1,224 @@
+import type { Dict } from "./dictionary";
+
+export const en: Dict = {
+  nav: {
+    home: "Home",
+    about: "About",
+    leadership: "Faculty",
+    membership: "Become a Member",
+  },
+  footer: {
+    aboutTitle: "Pakistan-China Friendship Association",
+    aboutText:
+      "A non-profit, non-government, voluntary organization based in Lahore, Pakistan, dedicated to strengthening friendship between the peoples of Pakistan and China.",
+    estNote:
+      "Formally established on 20 August 2026 to promote people-to-people relations between Pakistan and China.",
+    quickLinks: "Quick Links",
+    membership: "Membership",
+    membershipInfo: "How to become a member",
+    contact: "Location",
+    location: "Lahore, Pakistan",
+    emailLabel: "Email",
+    rights: "All rights reserved.",
+    established: "Established 20 August 2026",
+    langNote: "中文 / English",
+  },
+  home: {
+    heroEyebrow: "Pakistan - China",
+    heroTitle: "Pakistan-China Friendship Association",
+    heroSubtitle:
+      "Non-profit · Non-government · Voluntary - Lahore, Pakistan",
+    heroIntro:
+      "Pakistan-China Friendship Association (PCFA), Lahore was formally established on 20th August 2026 with the objective of bringing the people of Pakistan and China closer through social, cultural, educational, economic and recreational interactions.",
+    heroCta: "Become a Member",
+    heroCtaSecondary: "Learn More",
+    heroImageCaption:
+      "The Pakistan-China Friendship Association Lahore at its first group gathering",
+    eventEyebrow: "Our Beginning",
+    eventTitle: "The First Gathering",
+    eventText:
+      "The photograph above was taken at the first group gathering of the Pakistan-China Friendship Association, Lahore. It marks the beginning of the Association's early activities and reflects the purpose for which PCFA was formally established on 20 August 2026: bringing the people of Pakistan and China closer through social, cultural, educational, economic and recreational interaction.",
+    eventText2:
+      "From this first gathering, the Association's work continues: promoting people-to-people contact, mutual understanding, friendship and cooperation between the two countries.",
+    introTitle: "About PCFA Lahore",
+    introText:
+      "A non-profit, non-government and voluntary organization committed to strengthening the bonds of friendship between Pakistan and China.",
+    peopleTitle: "People-to-People Programmes",
+    peopleText:
+      "PCFA will organize various activities and programmes from time to time to promote people-to-people contact, mutual understanding, friendship and cooperation between the two countries.",
+    peopleFocus: {
+      title: "People-to-People Contact",
+      text: "Bringing the people of Pakistan and China closer through regular social, cultural and community interactions.",
+    },
+    peopleMission: {
+      title: "Mutual Understanding",
+      text: "Deepening friendship and cooperation by celebrating the important national and cultural occasions of both countries.",
+    },
+    peopleScope: {
+      title: "Broad Cooperation",
+      text: "Academic, cultural, economic and recreational relations between the peoples of Pakistan and China.",
+    },
+    pillarsTitle: "Our Focus Areas",
+    pillars: [
+      { title: "Social & Cultural", text: "Celebrating the important national and cultural occasions of both countries." },
+      { title: "Educational", text: "Seminars, conferences, exhibitions, language programmes and exchange visits." },
+      { title: "Economic", text: "Collaboration among businesses, think tanks and civil society organizations." },
+      { title: "Recreational", text: "Friendship programmes that bring the two communities closer." },
+    ],
+    objectivesTitle: "Our Objectives",
+    objectives: [
+      "Celebrate important national and cultural occasions of both countries.",
+      "Strengthen people-to-people relations between Pakistan and China.",
+      "Organize seminars, conferences, exhibitions, cultural festivals, language programmes and exchange visits.",
+      "Facilitate collaboration among educational institutions, think tanks, businesses and civil society organizations.",
+      "Establish an Alumni Chapter within PCFA for Pakistanis educated at Chinese institutions.",
+    ],
+    activitiesTitle: "Our Programmes",
+    activities: [
+      { title: "Seminars & Conferences", text: "Academic gatherings promoting dialogue and exchange between the two countries." },
+      { title: "Exhibitions & Cultural Festivals", text: "Showcasing the heritage and culture of Pakistan and China." },
+      { title: "Language Programmes", text: "Language learning opportunities that bring the two communities closer." },
+      { title: "Exchange Visits", text: "Delegations and visits that build lasting personal and institutional links." },
+    ],
+    liaisonTitle: "Liaison with the Consulate General of China",
+    liaisonText:
+      "PCFA maintains liaison and coordination with the Consulate General of China in Lahore to celebrate the important national and cultural occasions of both countries and to organize joint activities.",
+    ctaTitle: "Become a Member",
+    ctaText: "Join PCFA Lahore and help strengthen the enduring friendship between Pakistan and China.",
+    ctaTitleDark: "Join Us in Building Friendship",
+    ctaTextDark:
+      "Membership is open to all who share our commitment to friendship and cooperation between the peoples of Pakistan and China.",
+    ctaButton: "Apply for Membership",
+    visionTitle: "Our Vision",
+    visionText:
+      "To promote and strengthen academic, cultural, economic and recreational relations and cooperation between the peoples of Pakistan and China, and to maintain contact with the Consulate General of China in Lahore.",
+    alumniTitle: "Alumni Chapter",
+    alumniText:
+      "PCFA is establishing an Alumni Chapter for Pakistanis educated at Chinese institutions, creating a lasting network of individuals who have experienced China firsthand and can contribute to the friendship between our two nations.",
+    membershipTitle: "Membership",
+    membershipText:
+      "Membership of PCFA Lahore is open to those who share the Association's commitment to friendship between Pakistan and China. The Association also recognizes honorary members for their contribution to the cause of Pakistan-China friendship.",
+  },
+  about: {
+    title: "About PCFA",
+    eyebrow: "Who We Are",
+    introTitle: "About the Association",
+    introText:
+      "Pakistan-China Friendship Association (PCFA), Lahore was formally established on 20th August 2026 with the objective of bringing the people of Pakistan and China closer through social, cultural, educational, economic and recreational interactions.",
+    natureTitle: "Our Nature",
+    natureText:
+      "The PCFA is a non-profit, non-government and voluntary organization based in Lahore, Pakistan. It is a people's organization whose strength comes from the voluntary participation of citizens, professionals, academics and business leaders who share a commitment to friendship between Pakistan and China.",
+    purposeTitle: "Our Purpose",
+    purposeText:
+      "The Association works to promote people-to-people contact, mutual understanding, friendship and cooperation between the two countries, and to maintain liaison and coordination with the Consulate General of China in Lahore.",
+    visionTitle: "Our Vision",
+    visionText:
+      "To promote and strengthen academic, cultural, economic and recreational relationships and cooperation between the peoples of Pakistan and China, and to maintain liaison with the Consulate General of China in Lahore.",
+    objectivesTitle: "Our Objectives",
+    objectives: [
+      "Celebrate important national and cultural occasions of both countries.",
+      "Strengthen people-to-people relations between Pakistan and China.",
+      "Organize seminars, conferences, exhibitions, cultural festivals, language programmes and exchange visits.",
+      "Facilitate collaboration among educational institutions, think tanks, businesses and civil society organizations.",
+      "Establish an Alumni Chapter within PCFA for Pakistanis educated at Chinese institutions.",
+    ],
+    activitiesTitle: "What We Do",
+    activitiesText:
+      "The PCFA will organize various activities and programmes from time to time to promote people-to-people contact, mutual understanding, friendship, and cooperation between the two countries.",
+    activities: [
+      { title: "Seminars & Conferences", text: "Academic gatherings that promote dialogue, research and exchange between Pakistani and Chinese institutions." },
+      { title: "Exhibitions & Cultural Festivals", text: "Events celebrating the important national and cultural occasions of both countries." },
+      { title: "Language Programmes", text: "Language learning opportunities that build communication and understanding between the two communities." },
+      { title: "Exchange Visits", text: "Visits and delegations that create lasting personal, academic and institutional links." },
+    ],
+    collaborationTitle: "Collaboration & Partnerships",
+    collaborationText:
+      "PCFA facilitates collaboration among educational institutions, think tanks, businesses and civil society organizations of both countries, building academic relationships, cultural relationships, economic cooperation and recreational cooperation.",
+    alumniTitle: "Alumni Chapter",
+    alumniText:
+      "PCFA is establishing an Alumni Chapter for Pakistanis educated at Chinese institutions, creating a lasting network of individuals who have experienced China firsthand and can contribute to the friendship between our two nations.",
+    membershipTitle: "Membership",
+    membershipText:
+      "Membership of PCFA Lahore is open to those who share the Association's commitment to friendship between Pakistan and China. The Association also recognizes honorary members for their contribution to the cause of Pakistan-China friendship.",
+    ctaTitle: "Become a Member",
+    ctaText: "Join PCFA Lahore and help strengthen the enduring friendship between Pakistan and China.",
+    ctaButton: "Apply for Membership",
+  },
+  leadership: {
+    title: "Leadership & Faculty",
+    eyebrow: "Faculty & Executive Committee",
+    subtitle: "The office bearers and members of the Executive Committee guiding PCFA Lahore.",
+    president: "President, PCFA",
+    secretaryGeneral: "Secretary General, PCFA",
+    jointSecretary: "Joint Secretary, PCFA",
+    memberEC: "Member Executive Committee, PCFA",
+    member: "Member, PCFA",
+    seniorVP: "Senior Vice President (SVP), PCFA",
+    dean: "Dean, University of Central Punjab",
+    ownerDirector: "Owner & Director, IMC Hospital, Defence",
+    director: "Director, Sufi Group of Industries",
+    formerDG: "Former DG Excise and Taxation, Government of the Punjab",
+    gcuLahore: "GC University, Lahore",
+  },
+  membership: {
+    title: "Become a Member",
+    eyebrow: "Join PCFA Lahore",
+    subtitle: "Apply to become a member of the Pakistan-China Friendship Association, Lahore.",
+    successTitle: "Application Submitted",
+    successText:
+      "Thank you for your interest in joining PCFA Lahore. We have received your application and a confirmation email has been sent to you. Our team will review your application and get in touch soon.",
+    backHome: "Back to Home",
+    form: {
+      fullName: "Full Name",
+      email: "Email Address",
+      phone: "Phone Number",
+      country: "Country",
+      city: "City",
+      organization: "Organization / Institution",
+      designation: "Designation",
+      education: "Education / Background",
+      reason: "Why do you want to join PCFA?",
+      submit: "Submit Application",
+      submitting: "Submitting...",
+      required: "required",
+    },
+  },
+  admin: {
+    loginTitle: "Admin Sign In",
+    loginSubtitle: "PCFA Lahore - Administration",
+    email: "Email",
+    password: "Password",
+    signIn: "Sign In",
+    signingIn: "Signing in...",
+    invalid: "Invalid email or password.",
+    signOut: "Sign Out",
+    applications: "Applications",
+    members: "Members",
+    newsletter: "Newsletter",
+    pending: "Pending",
+    approved: "Approved",
+    rejected: "Rejected",
+    approve: "Approve",
+    reject: "Reject",
+    noApplications: "No applications found.",
+    noMembers: "No approved members yet.",
+    newsletterSubject: "Subject",
+    newsletterMessage: "Message",
+    sendNewsletter: "Send to All Members",
+    sending: "Sending...",
+    newsletterSuccess: "Newsletter sent successfully.",
+    newsletterError: "Failed to send newsletter.",
+    applicantDetails: "Applicant Details",
+    status: "Status",
+    date: "Date",
+    actions: "Actions",
+    close: "Close",
+    addMemberTitle: "Add Member",
+    memberAdded: "Member added successfully.",
+    memberAddError: "Failed to add member.",
+  },
+  common: {
+    language: "中文",
+    loading: "Loading...",
+  },
+};
