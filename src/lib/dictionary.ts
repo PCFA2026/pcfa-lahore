@@ -29,10 +29,17 @@ export interface Dict {
     heroCta: string;
     heroCtaSecondary: string;
     heroImageCaption: string;
+    xiCaption: string;
+    shehbazCaption: string;
+    diplomaticEyebrow: string;
     eventEyebrow: string;
     eventTitle: string;
     eventText: string;
     eventText2: string;
+    consulEyebrow: string;
+    consulTitle: string;
+    consulRole: string;
+    consulText: string;
     introTitle: string;
     introText: string;
     peopleTitle: string;
@@ -85,6 +92,17 @@ export interface Dict {
     ctaTitle: string;
     ctaText: string;
     ctaButton: string;
+    associationLabel: string;
+    countriesLabel: string;
+    directionLabel: string;
+    focusLabel: string;
+    programmesLabel: string;
+    togetherLabel: string;
+    networkLabel: string;
+    statsEstablished: string;
+    statsYear: string;
+    statsFounders: string;
+    statsProgrammes: string;
   };
   leadership: {
     title: string;
@@ -101,6 +119,12 @@ export interface Dict {
     director: string;
     formerDG: string;
     gcuLahore: string;
+  };
+  founders: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    photoUnavailable: string;
   };
   membership: {
     title: string;
@@ -157,6 +181,8 @@ export interface Dict {
     addMemberTitle: string;
     memberAdded: string;
     memberAddError: string;
+    applicationApproved: string;
+    applicationRejected: string;
   };
   common: {
     language: string;

@@ -9,16 +9,20 @@ export interface Leader {
 }
 
 /**
- * The 9 members of the PCFA Executive Committee / Faculty.
- * Order follows office: President, Secretary General, Joint Secretary,
- * then the Executive Committee / members.
+ * The PCFA Executive Committee, ordered from senior office bearers to
+ * committee members.
  */
 export const leaders: Leader[] = [
   {
     name: "Dr. Khalid Manzoor Butt",
     titleKey: "president",
     extraKey: "dean",
-    photo: "/photos/Dr Khalid Manzoor Butt.jpeg",
+    photo: "/photos/president new photo.jpeg",
+  },
+  {
+    name: "Ms. HO (Zainab)",
+    titleKey: "seniorVP",
+    photo: "/photos/Ms HO (Zainab).jpeg",
   },
   {
     name: "Mr. Asad Gondal",
@@ -55,13 +59,9 @@ export const leaders: Leader[] = [
     photo: "/photos/Mr Naveed Saeed .jpeg",
   },
   {
-    name: "Ms. HO (Zainab)",
-    titleKey: "seniorVP",
-    photo: "/photos/Ms HO (Zainab).jpeg",
-  },
-  {
-    name: "Ms. Khatiqa Amir",
+    name: "Ms. Khadija Amer",
     titleKey: "member",
-    // No photo available — show a clean text-only card. Do NOT use a fake image.
+    photo: "/images/khadija-amer-placeholder.png",
+    // Uses the supplied neutral placeholder image in both member lists.
   },
 ];

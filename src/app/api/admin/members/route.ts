@@ -1,8 +1,13 @@
 import { NextResponse } from "next/server";
 import { supabaseService } from "@/lib/supabase";
 import { requireAdmin } from "@/lib/server-auth";
+import { addLocalMember, isLocalTestMode, localMembers } from "@/lib/local-test-store";
 
 export async function GET() {
+  if (isLocalTestMode()) {
+    return NextResponse.json({ members: localMembers(), localTest: true });
+  }
+
   if (!supabaseService) {
     return NextResponse.json({ error: "Server not configured" }, { status: 500 });
   }
@@ -22,12 +27,6 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  if (!supabaseService) {
-    return NextResponse.json({ error: "Server not configured" }, { status: 500 });
-  }
-  const admin = await requireAdmin();
-  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   let body: Record<string, string>;
   try {
     body = await req.json();
@@ -41,6 +40,17 @@ export async function POST(req: Request) {
   if (!full_name || !email) {
     return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
   }
+
+  if (isLocalTestMode()) {
+    addLocalMember(body);
+    return NextResponse.json({ ok: true, localTest: true });
+  }
+
+  if (!supabaseService) {
+    return NextResponse.json({ error: "Server not configured" }, { status: 500 });
+  }
+  const admin = await requireAdmin();
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { error } = await supabaseService.from("approved_members").insert({
     full_name,

@@ -34,7 +34,7 @@ export default function MembersTab() {
     finally { setBusy(false); }
   }
 
-  if (loading) return <p className="text-brand-slate">{t.common.loading}</p>;
+  if (loading) return <LoadingSkeleton />;
 
   return (
     <div className="space-y-6">
@@ -64,9 +64,13 @@ export default function MembersTab() {
           </div>
         </form>
       )}
-      {members.length === 0 ? (<p className="text-brand-slate">{t.admin.noMembers}</p>) : (
+      {members.length === 0 ? (<div className="rounded-xl border border-dashed border-slate-300 bg-brand-light px-6 py-12 text-center"><div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white text-brand-blue shadow-sm">&#128101;</div><p className="mt-4 text-brand-slate">{t.admin.noMembers}</p></div>) : (
         <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="text-left text-brand-slate border-b border-slate-200"><th className="py-3 pr-4">{t.membership.form.fullName}</th><th className="py-3 pr-4">{t.membership.form.email}</th><th className="py-3 pr-4">{t.membership.form.organization}</th><th className="py-3 pr-4">{t.admin.date}</th></tr></thead><tbody>{members.map((m) => (<tr key={m.id} className="border-b border-slate-100"><td className="py-3 pr-4 font-medium text-brand-blue">{m.full_name}</td><td className="py-3 pr-4 text-brand-slate">{m.email}</td><td className="py-3 pr-4 text-brand-slate">{m.organization || "-"}</td><td className="py-3 pr-4 text-brand-slate">{new Date(m.approved_at).toLocaleDateString()}</td></tr>))}</tbody></table></div>
       )}
     </div>
   );
+}
+
+function LoadingSkeleton() {
+  return <div className="space-y-4" aria-label="Loading"><div className="h-10 w-48 animate-pulse rounded-lg bg-slate-200" /><div className="h-48 animate-pulse rounded-xl bg-slate-200" /></div>;
 }

@@ -2,14 +2,9 @@ import { NextResponse } from "next/server";
 import { supabaseService } from "@/lib/supabase";
 import { requireAdmin } from "@/lib/server-auth";
 import { sendNewsletter } from "@/lib/emails";
+import { isLocalTestMode, recordLocalNewsletter } from "@/lib/local-test-store";
 
 export async function POST(req: Request) {
-  if (!supabaseService) {
-    return NextResponse.json({ error: "Server not configured" }, { status: 500 });
-  }
-  const admin = await requireAdmin();
-  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   let body: { subject?: string; message?: string };
   try {
     body = await req.json();
@@ -25,6 +20,20 @@ export async function POST(req: Request) {
       { status: 400 }
     );
   }
+
+  if (isLocalTestMode()) {
+    const recipientCount = recordLocalNewsletter(subject, message);
+    if (recipientCount === 0) {
+      return NextResponse.json({ error: "No members to send to" }, { status: 400 });
+    }
+    return NextResponse.json({ ok: true, recipientCount, localTest: true });
+  }
+
+  if (!supabaseService) {
+    return NextResponse.json({ error: "Server not configured" }, { status: 500 });
+  }
+  const admin = await requireAdmin();
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   // Get all approved member emails
   const { data: members, error: fetchErr } = await supabaseService

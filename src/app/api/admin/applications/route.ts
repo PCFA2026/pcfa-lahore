@@ -1,8 +1,13 @@
 import { NextResponse } from "next/server";
 import { supabaseService } from "@/lib/supabase";
 import { requireAdmin } from "@/lib/server-auth";
+import { isLocalTestMode, localApplications } from "@/lib/local-test-store";
 
 export async function GET() {
+  if (isLocalTestMode()) {
+    return NextResponse.json({ applications: localApplications(), localTest: true });
+  }
+
   if (!supabaseService) {
     return NextResponse.json({ error: "Server not configured" }, { status: 500 });
   }

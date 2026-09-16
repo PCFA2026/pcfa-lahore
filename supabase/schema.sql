@@ -13,6 +13,14 @@ CREATE TABLE IF NOT EXISTS membership_applications (
   designation text,
   education text,
   reason text,
+  application_type text NOT NULL DEFAULT 'honorary' CHECK (application_type IN ('honorary', 'alumni')),
+  father_husband_name text,
+  residential_address text,
+  office_address text,
+  chinese_institution_city text,
+  qualification text,
+  qualification_year text,
+  honorary_membership boolean,
   status text NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','approved','rejected')),
   created_at timestamptz NOT NULL DEFAULT now()
 );
@@ -29,8 +37,34 @@ CREATE TABLE IF NOT EXISTS approved_members (
   designation text,
   education text,
   reason text,
+  application_type text NOT NULL DEFAULT 'honorary' CHECK (application_type IN ('honorary', 'alumni')),
+  father_husband_name text,
+  residential_address text,
+  office_address text,
+  chinese_institution_city text,
+  qualification text,
+  qualification_year text,
+  honorary_membership boolean,
   approved_at timestamptz NOT NULL DEFAULT now()
 );
+
+-- Safely add the new fields when upgrading an existing project.
+ALTER TABLE membership_applications ADD COLUMN IF NOT EXISTS application_type text NOT NULL DEFAULT 'honorary' CHECK (application_type IN ('honorary', 'alumni'));
+ALTER TABLE membership_applications ADD COLUMN IF NOT EXISTS father_husband_name text;
+ALTER TABLE membership_applications ADD COLUMN IF NOT EXISTS residential_address text;
+ALTER TABLE membership_applications ADD COLUMN IF NOT EXISTS office_address text;
+ALTER TABLE membership_applications ADD COLUMN IF NOT EXISTS chinese_institution_city text;
+ALTER TABLE membership_applications ADD COLUMN IF NOT EXISTS qualification text;
+ALTER TABLE membership_applications ADD COLUMN IF NOT EXISTS qualification_year text;
+ALTER TABLE membership_applications ADD COLUMN IF NOT EXISTS honorary_membership boolean;
+ALTER TABLE approved_members ADD COLUMN IF NOT EXISTS application_type text NOT NULL DEFAULT 'honorary' CHECK (application_type IN ('honorary', 'alumni'));
+ALTER TABLE approved_members ADD COLUMN IF NOT EXISTS father_husband_name text;
+ALTER TABLE approved_members ADD COLUMN IF NOT EXISTS residential_address text;
+ALTER TABLE approved_members ADD COLUMN IF NOT EXISTS office_address text;
+ALTER TABLE approved_members ADD COLUMN IF NOT EXISTS chinese_institution_city text;
+ALTER TABLE approved_members ADD COLUMN IF NOT EXISTS qualification text;
+ALTER TABLE approved_members ADD COLUMN IF NOT EXISTS qualification_year text;
+ALTER TABLE approved_members ADD COLUMN IF NOT EXISTS honorary_membership boolean;
 
 -- Newsletter send log
 CREATE TABLE IF NOT EXISTS newsletter_sends (

@@ -19,8 +19,9 @@ export default function Footer() {
                 <Image
                   src={LOGO_SRC}
                   alt="Crossed flags of Pakistan and China"
-                  width={619}
-                  height={432}
+              width={619}
+              height={432}
+              sizes="72px"
                   className="h-9 w-auto"
                 />
               </div>
@@ -44,18 +45,18 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-base mb-3">{t.footer.quickLinks}</h3>
             <ul className="space-y-2 text-sm text-white/80">
-              <li><Link href="/" className="hover:text-white transition-colors">{t.nav.home}</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">{t.nav.about}</Link></li>
-              <li><Link href="/leadership" className="hover:text-white transition-colors">{t.nav.leadership}</Link></li>
-              <li><Link href="/membership" className="hover:text-white transition-colors">{t.nav.membership}</Link></li>
+              <li><Link href="/#home" className="hover:text-white transition-colors">{t.nav.home}</Link></li>
+              <li><Link href="/#about" className="hover:text-white transition-colors">{t.nav.about}</Link></li>
+              <li><Link href="/#faculty" className="hover:text-white transition-colors">{t.nav.leadership}</Link></li>
+              <li><Link href="/#membership" className="hover:text-white transition-colors">{t.nav.membership}</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-bold text-base mb-3">{t.footer.membership}</h3>
             <ul className="space-y-2 text-sm text-white/80">
-              <li><Link href="/membership" className="hover:text-white transition-colors">{t.nav.membership}</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">{t.footer.membershipInfo}</Link></li>
+              <li><Link href="/#membership" className="hover:text-white transition-colors">{t.nav.membership}</Link></li>
+              <li><Link href="/#membership" className="hover:text-white transition-colors">{t.footer.membershipInfo}</Link></li>
             </ul>
           </div>
 

@@ -2,17 +2,12 @@ import { NextResponse } from "next/server";
 import { supabaseService } from "@/lib/supabase";
 import { requireAdmin } from "@/lib/server-auth";
 import { sendApprovalEmail } from "@/lib/emails";
+import { isLocalTestMode, updateLocalApplication } from "@/lib/local-test-store";
 
 export async function PATCH(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  if (!supabaseService) {
-    return NextResponse.json({ error: "Server not configured" }, { status: 500 });
-  }
-  const admin = await requireAdmin();
-  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   const { id } = await params;
   let body: { action?: string };
   try {
@@ -25,6 +20,18 @@ export async function PATCH(
   if (action !== "approve" && action !== "reject") {
     return NextResponse.json({ error: "Invalid action" }, { status: 400 });
   }
+
+  if (isLocalTestMode()) {
+    const updated = updateLocalApplication(id, action);
+    if (!updated) return NextResponse.json({ error: "Application not found" }, { status: 404 });
+    return NextResponse.json({ ok: true, status: updated.status, localTest: true });
+  }
+
+  if (!supabaseService) {
+    return NextResponse.json({ error: "Server not configured" }, { status: 500 });
+  }
+  const admin = await requireAdmin();
+  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const status = action === "approve" ? "approved" : "rejected";
 
@@ -62,6 +69,14 @@ export async function PATCH(
         designation: updated.designation,
         education: updated.education,
         reason: updated.reason,
+        application_type: updated.application_type,
+        father_husband_name: updated.father_husband_name,
+        residential_address: updated.residential_address,
+        office_address: updated.office_address,
+        chinese_institution_city: updated.chinese_institution_city,
+        qualification: updated.qualification,
+        qualification_year: updated.qualification_year,
+        honorary_membership: updated.honorary_membership,
       });
 
       if (insertErr) {
