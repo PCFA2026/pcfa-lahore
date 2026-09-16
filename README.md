@@ -14,7 +14,7 @@ Built with **Next.js 16**, **TypeScript**, **Tailwind CSS v4**, **Supabase**, an
 - **Admin panel** (`/admin`) — login, view/approve/reject applications, manage members, send newsletters
 - **Responsive** — mobile, tablet, desktop
 - **Secure** — service-role key server-side only, RLS on all tables, admin routes protected
-
+testing
 ---
 
 ## Local Development
