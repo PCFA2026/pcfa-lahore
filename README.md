@@ -14,7 +14,7 @@ Built with **Next.js 16**, **TypeScript**, **Tailwind CSS v4**, **Supabase**, an
 - **Admin panel** (`/admin`) — login, view/approve/reject applications, manage members, send newsletters
 - **Responsive** — mobile, tablet, desktop
 - **Secure** — service-role key server-side only, RLS on all tables, admin routes protected
-testing
+testings
 ---
 
 ## Local Development
@@ -149,3 +149,5 @@ supabase/schema.sql           # Database schema + RLS
 1. **Application confirmation** — sent to applicant when they submit the form.
 2. **Approval / welcome** — sent when an admin approves an application.
 3. **Newsletter** — sent to all approved members from the admin panel.
+
+<!-- deployment -->
