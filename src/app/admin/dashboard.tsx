@@ -2,18 +2,16 @@
 
 import { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import ApplicationsTab from "./applications-tab";
 import MembersTab from "./members-tab";
 import NewsletterTab from "./newsletter-tab";
 
-type Tab = "applications" | "members" | "newsletter";
+type Tab = "members" | "newsletter";
 
 export default function AdminDashboard({ onLogout }: { onLogout: () => void }) {
   const { t } = useLang();
-  const [tab, setTab] = useState<Tab>("applications");
+  const [tab, setTab] = useState<Tab>("members");
 
   const tabs: { key: Tab; label: string }[] = [
-    { key: "applications", label: t.admin.applications },
     { key: "members", label: t.admin.members },
     { key: "newsletter", label: t.admin.newsletter },
   ];
@@ -49,7 +47,6 @@ export default function AdminDashboard({ onLogout }: { onLogout: () => void }) {
         ))}
       </div>
 
-      {tab === "applications" && <ApplicationsTab />}
       {tab === "members" && <MembersTab />}
       {tab === "newsletter" && <NewsletterTab />}
     </div>

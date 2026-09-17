@@ -8,6 +8,7 @@ export interface FoundingMember {
 /** Founding-member information supplied in "PCFA founding members.docx". */
 const foundingMembersSource: FoundingMember[] = [
   { name: "Prof. Dr. Khalid Manzoor Butt", role: "Dean, Faculty of Humanities and Social Sciences / Faculty of Languages and Literature, University of Central Punjab, Lahore.", photo: "/photos/founding new/Prof. Dr. Khalid Manzoor Butt,.jpeg", photoOrientation: "square" },
+  { name: "Ms. Khadija Amer", role: "Group Director, Punjab Colleges & UCP.", photo: "/images/khadija-amer-placeholder.png", photoOrientation: "square" },
   { name: "Mr. Kamran Lashari", role: "Former Chief Secretary Sindh, Chairman CDA Islamabad, and DG, Walled City Lahore Authority.", photo: "/photos/founding new/Kamran Lashari.png", photoOrientation: "square" },
   { name: "Dr. Kiran Khurshid", role: "Secretary, Food Security & Consumer Protection, Government of the Punjab, Lahore.", photo: "/photos/founding new/Dr. Kiran Khurshid,.png", photoOrientation: "square" },
   { name: "Dr. Hassan A. Shah", role: "Former Vice Chancellor, GC University Lahore; currently Dean of Sciences, FCCU.", photo: "/photos/founding new/Dr. Hassan A. Shah,.png", photoOrientation: "square" },
@@ -24,7 +25,6 @@ const foundingMembersSource: FoundingMember[] = [
   { name: "Ms. Chen Meifen", role: "Chinese national; teacher residing in Lahore.", photo: "/photos/founding new/Ms. Chen Meifen, (Chinese National),.png", photoOrientation: "square" },
   { name: "Ms. HO, Yuk Bing Barbara", role: "Chinese national; Vice Principal, Chinese International Academy, Lahore.", photo: "/photos/founding new/Ms HO, Yuk Bing Barbara, (Chinese National),.png", photoOrientation: "square" },
   { name: "Mr. Muhammad Mauz A. Jabal", role: "Xiaomi’s Head of Legal and Government Relations.", photo: "/photos/founding new/Mr. Muhammad Mauz A. Jabal.png", photoOrientation: "landscape" },
-  { name: "Ms. Khadija Amer", role: "Group Director, Punjab Colleges & UCP.", photo: "/images/khadija-amer-placeholder.png", photoOrientation: "square" },
 ];
 
 export const foundingMembers = foundingMembersSource;

@@ -14,44 +14,46 @@ export interface Leader {
  */
 export const leaders: Leader[] = [
   {
-    name: "Dr. Khalid Manzoor Butt",
+    name: "Prof. Dr. Khalid Manzoor Butt",
     titleKey: "president",
-    extraKey: "dean",
     photo: "/photos/president new photo.jpeg",
   },
   {
-    name: "Ms. HO (Zainab)",
+    name: "Ms. HO, Yuk Bing Barbara (Zainab)",
     titleKey: "seniorVP",
+    extraKey: "chineseNational",
     photo: "/photos/Ms HO (Zainab).jpeg",
   },
   {
-    name: "Mr. Asad Gondal",
+    name: "Ms. Khadija Amer",
+    titleKey: "vicePresident",
+    photo: "/images/khadija-amer-placeholder.png",
+  },
+  {
+    name: "Dr. Kiran Khurshid",
+    titleKey: "vicePresident",
+    photo: "/photos/founding new/Dr. Kiran Khurshid,.png",
+  },
+  {
+    name: "Mr. Asad Sultan Gondal",
     titleKey: "secretaryGeneral",
-    extraKey: "ownerDirector",
     photo: "/photos/Mr Asad Gonda.jpeg",
   },
   {
-    name: "Mr. Hamza Sufi",
+    name: "Mr. Hamza Tariq Sufi",
     titleKey: "jointSecretary",
-    extraKey: "director",
     photo: "/photos/Mr Hamza Sufi.jpeg",
   },
   {
-    name: "Mr. Rizwan Sherwani",
+    name: "Mr. Rizwan Akram Sherwani",
     titleKey: "memberEC",
-    extraKey: "formerDG",
     photo: "/photos/Mr Rizwan Sherwani.jpeg",
   },
   {
     name: "Ms. Chen Meifen",
     titleKey: "memberEC",
+    extraKey: "chineseNational",
     photo: "/photos/Ms Chen Meifen .jpeg",
-  },
-  {
-    name: "Dr. Farzana Riaz",
-    titleKey: "memberEC",
-    extraKey: "gcuLahore",
-    photo: "/photos/Dr Farzana Riaz.jpeg",
   },
   {
     name: "Mr. Naveed Saeed",
@@ -59,9 +61,8 @@ export const leaders: Leader[] = [
     photo: "/photos/Mr Naveed Saeed .jpeg",
   },
   {
-    name: "Ms. Khadija Amer",
-    titleKey: "member",
-    photo: "/images/khadija-amer-placeholder.png",
-    // Uses the supplied neutral placeholder image in both member lists.
+    name: "Dr. Farzana Riaz",
+    titleKey: "memberEC",
+    photo: "/photos/Dr Farzana Riaz.jpeg",
   },
 ];

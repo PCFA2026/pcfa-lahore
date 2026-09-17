@@ -173,6 +173,8 @@ export const en: Dict = {
     memberEC: "Member Executive Committee, PCFA",
     member: "Member, PCFA",
     seniorVP: "Senior Vice President (SVP), PCFA",
+    vicePresident: "Vice President, PCFA",
+    chineseNational: "Chinese National",
     dean: "Dean, University of Central Punjab",
     ownerDirector: "Owner & Director, IMC Hospital, Defence",
     director: "Director, Sufi Group of Industries",

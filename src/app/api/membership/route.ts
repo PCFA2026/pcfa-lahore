@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabaseService } from "@/lib/supabase";
-import { sendApplicationConfirmation } from "@/lib/emails";
-import { addLocalApplication, isLocalTestMode } from "@/lib/local-test-store";
+import { sendApprovalEmail } from "@/lib/emails";
+import { addLocalApplication, isLocalTestMode, updateLocalApplication } from "@/lib/local-test-store";
 
 export async function POST(req: Request) {
   let body: Record<string, string>;
@@ -25,7 +25,8 @@ export async function POST(req: Request) {
   }
 
   if (isLocalTestMode()) {
-    addLocalApplication(body);
+    const application = addLocalApplication(body, "approved");
+    updateLocalApplication(application.id, "approve");
     return NextResponse.json({ ok: true, localTest: true });
   }
 
@@ -33,7 +34,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Server not configured" }, { status: 500 });
   }
 
-  const { error } = await supabaseService.from("membership_applications").insert({
+  const { data: existing } = await supabaseService
+    .from("approved_members")
+    .select("id")
+    .eq("email", email)
+    .limit(1);
+
+  if (existing && existing.length > 0) {
+    return NextResponse.json({ error: "This email is already registered as a PCFA member." }, { status: 409 });
+  }
+
+  const member = {
     full_name,
     email,
     phone: (body.phone || "").trim() || null,
@@ -51,19 +62,27 @@ export async function POST(req: Request) {
     qualification: (body.qualification || "").trim() || null,
     qualification_year: (body.qualification_year || "").trim() || null,
     honorary_membership: body.honorary_membership === "yes",
-    status: "pending",
-  });
+  };
 
-  if (error) {
-    console.error("Supabase insert error:", error);
+  const { error: memberError } = await supabaseService.from("approved_members").insert(member);
+
+  if (memberError) {
+    console.error("Supabase member insert error:", memberError);
     return NextResponse.json({ error: "Failed to save application" }, { status: 500 });
   }
 
-  // Send confirmation email (non-blocking for the response)
+  // Keep an approved audit record of the form submission. Membership is already
+  // active even if this non-essential audit insert later fails.
+  const { error: applicationError } = await supabaseService
+    .from("membership_applications")
+    .insert({ ...member, status: "approved" });
+  if (applicationError) console.error("Supabase application audit insert error:", applicationError);
+
+  // Membership is automatic; send the welcome message without blocking signup.
   try {
-    await sendApplicationConfirmation(email, full_name);
+    await sendApprovalEmail(email, full_name);
   } catch (e) {
-    console.error("Confirmation email failed:", e);
+    console.error("Welcome email failed:", e);
   }
 
   return NextResponse.json({ ok: true });

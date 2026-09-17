@@ -60,8 +60,8 @@ export default function MembershipForm() {
       <section id="membership" className="scroll-mt-16 bg-brand-light py-20 sm:py-24">
         <Reveal className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <div className="w-16 h-16 mx-auto rounded-full bg-brand-red/10 flex items-center justify-center mb-6">✓</div>
-          <h2 className="text-3xl font-bold text-brand-blue">Application Submitted</h2>
-          <p className="mt-4 text-brand-slate text-lg leading-relaxed">Thank you. Your application has been received and will be reviewed by PCFA Lahore.</p>
+          <h2 className="text-3xl font-bold text-brand-blue">Membership Activated</h2>
+          <p className="mt-4 text-brand-slate text-lg leading-relaxed">Thank you for joining PCFA Lahore. Your information has been added to our member community.</p>
           <Link href="/#home" className="inline-block mt-8 bg-brand-blue text-white font-bold px-7 py-3 rounded-lg hover:bg-brand-blue-dark transition-colors">Back to Home</Link>
         </Reveal>
       </section>

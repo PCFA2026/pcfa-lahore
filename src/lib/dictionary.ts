@@ -114,6 +114,8 @@ export interface Dict {
     memberEC: string;
     member: string;
     seniorVP: string;
+    vicePresident: string;
+    chineseNational: string;
     dean: string;
     ownerDirector: string;
     director: string;

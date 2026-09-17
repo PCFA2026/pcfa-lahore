@@ -51,13 +51,21 @@ export default function HomePage() {
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/50 sm:h-20 sm:w-20">
                     <HeroVisual src="/images/Xi Jinping new.jpeg" alt={t.home.xiCaption} label="Xi Jinping" />
                   </div>
-                  <figcaption className="text-xs font-medium leading-snug text-white/90">{t.home.xiCaption}</figcaption>
+                  <figcaption className="text-xs font-medium leading-snug text-white/90">
+                    <span className="block">Xi Jinping</span>
+                    <span className="block">President</span>
+                    <span className="block">People&apos;s Republic of China</span>
+                  </figcaption>
                 </figure>
                 <figure className="flex items-center gap-3 rounded-lg bg-white/10 p-3">
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/50 sm:h-20 sm:w-20">
                     <HeroVisual src="/images/Muhammad Shehbaz Sharif.jpeg" alt={t.home.shehbazCaption} label="Muhammad Shehbaz Sharif" />
                   </div>
-                  <figcaption className="text-xs font-medium leading-snug text-white/90">{t.home.shehbazCaption}</figcaption>
+                  <figcaption className="text-xs font-medium leading-snug text-white/90">
+                    <span className="block">Mian Muhammad Shehbaz Sharif</span>
+                    <span className="block">Prime Minister</span>
+                    <span className="block">Islamic Republic of Pakistan</span>
+                  </figcaption>
                 </figure>
               </div>
             </div>
@@ -112,6 +120,14 @@ export default function HomePage() {
       <LeadershipSection />
       <FoundingMembersSection />
       <MembershipForm />
+      <section className="bg-brand-blue px-4 py-16 text-center text-white sm:py-20">
+        <Reveal className="mx-auto max-w-2xl">
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-red">PCFA Lahore</p>
+          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Our Growing Community</h2>
+          <p className="mt-4 text-lg leading-relaxed text-white/85">Discover the members and alumni who are helping strengthen Pakistan-China friendship.</p>
+          <Link href="/community" className="mt-7 inline-flex rounded-lg bg-white px-6 py-3 font-bold text-brand-blue transition-colors hover:bg-brand-light">View Our Community</Link>
+        </Reveal>
+      </section>
     </div>
   );
 }

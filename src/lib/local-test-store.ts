@@ -37,7 +37,7 @@ function value(body: Record<string, string>, key: string): string | null {
   return body[key]?.trim() || null;
 }
 
-export function addLocalApplication(body: Record<string, string>) {
+export function addLocalApplication(body: Record<string, string>, status: MembershipApplication["status"] = "pending") {
   const application: MembershipApplication = {
     id: crypto.randomUUID(),
     full_name: value(body, "full_name") || "",
@@ -56,8 +56,8 @@ export function addLocalApplication(body: Record<string, string>) {
     chinese_institution_city: value(body, "chinese_institution_city"),
     qualification: value(body, "qualification"),
     qualification_year: value(body, "qualification_year"),
-    honorary_membership: body.honorary_membership === "yes",
-    status: "pending",
+    honorary_membership: body.honorary_membership === "yes" || body.honorary_membership === "true",
+    status,
     created_at: new Date().toISOString(),
   };
   store().applications.unshift(application);
@@ -122,11 +122,26 @@ export function addLocalMember(body: Record<string, string>) {
     chinese_institution_city: value(body, "chinese_institution_city"),
     qualification: value(body, "qualification"),
     qualification_year: value(body, "qualification_year"),
-    honorary_membership: body.honorary_membership === "yes",
+    honorary_membership: body.honorary_membership === "yes" || body.honorary_membership === "true",
     approved_at: new Date().toISOString(),
   };
   store().members.unshift(member);
   return member;
+}
+
+export function updateLocalMember(id: string, changes: Partial<Omit<ApprovedMember, "id" | "approved_at">>) {
+  const member = store().members.find((item) => item.id === id);
+  if (!member) return null;
+  Object.assign(member, changes);
+  return member;
+}
+
+export function removeLocalMember(id: string) {
+  const members = store().members;
+  const index = members.findIndex((item) => item.id === id);
+  if (index === -1) return false;
+  members.splice(index, 1);
+  return true;
 }
 
 export function recordLocalNewsletter(subject: string, message: string) {

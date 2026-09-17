@@ -170,6 +170,8 @@ export const zh: Dict = {
     memberEC: "PCFA 执行委员会成员",
     member: "PCFA 成员",
     seniorVP: "PCFA 高级副会长",
+    vicePresident: "PCFA 副主席",
+    chineseNational: "中国籍",
     dean: "中央旁遮普大学 院长",
     ownerDirector: "IMC医院（Defence区）所有人兼董事",
     director: "Sufi工业集团 董事",
