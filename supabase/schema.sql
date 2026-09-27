@@ -81,10 +81,53 @@ CREATE UNIQUE INDEX IF NOT EXISTS approved_members_email_unique
 CREATE INDEX IF NOT EXISTS approved_members_type_name_index
   ON approved_members (application_type, full_name);
 
+-- Public programmes managed from the admin dashboard.
+CREATE TABLE IF NOT EXISTS events (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  title text NOT NULL,
+  title_zh text,
+  description text,
+  description_zh text,
+  event_date date,
+  location text,
+  cover_image_url text,
+  status text NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published')),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS gallery_posts (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  title text NOT NULL,
+  title_zh text,
+  description text,
+  description_zh text,
+  event_date date,
+  status text NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published')),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS gallery_images (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  post_id uuid NOT NULL REFERENCES gallery_posts(id) ON DELETE CASCADE,
+  image_url text NOT NULL,
+  alt_text text,
+  sort_order integer NOT NULL DEFAULT 0,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS events_public_date_index ON events (status, event_date);
+CREATE INDEX IF NOT EXISTS gallery_posts_public_date_index ON gallery_posts (status, event_date DESC);
+CREATE INDEX IF NOT EXISTS gallery_images_post_sort_index ON gallery_images (post_id, sort_order);
+
 -- Row Level Security
 ALTER TABLE membership_applications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE approved_members ENABLE ROW LEVEL SECURITY;
 ALTER TABLE newsletter_sends ENABLE ROW LEVEL SECURITY;
+ALTER TABLE events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE gallery_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE gallery_images ENABLE ROW LEVEL SECURITY;
 
 -- Deny all direct access. Every operation goes through server API routes
 -- using the service role key, which bypasses RLS.
@@ -100,5 +143,20 @@ BEGIN
   END IF;
   IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'newsletter_sends' AND policyname = 'deny_all') THEN
     CREATE POLICY "deny_all" ON newsletter_sends FOR ALL USING (false);
+  END IF;
+END $$;
+
+-- Public visitors can read only published events and gallery images belonging
+-- to published posts. Writes remain server-only through the service-role APIs.
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'events' AND policyname = 'public_read_published_events') THEN
+    CREATE POLICY "public_read_published_events" ON events FOR SELECT USING (status = 'published');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'gallery_posts' AND policyname = 'public_read_published_gallery_posts') THEN
+    CREATE POLICY "public_read_published_gallery_posts" ON gallery_posts FOR SELECT USING (status = 'published');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'gallery_images' AND policyname = 'public_read_published_gallery_images') THEN
+    CREATE POLICY "public_read_published_gallery_images" ON gallery_images FOR SELECT USING (EXISTS (SELECT 1 FROM gallery_posts WHERE gallery_posts.id = gallery_images.post_id AND gallery_posts.status = 'published'));
   END IF;
 END $$;

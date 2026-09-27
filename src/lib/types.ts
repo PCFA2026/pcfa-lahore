@@ -45,3 +45,40 @@ export interface ApprovedMember {
   honorary_membership: boolean | null;
   approved_at: string;
 }
+
+export type ContentStatus = "draft" | "published";
+
+export interface EventItem {
+  id: string;
+  title: string;
+  title_zh: string | null;
+  description: string | null;
+  description_zh: string | null;
+  event_date: string | null;
+  location: string | null;
+  cover_image_url: string | null;
+  status: ContentStatus;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GalleryImage {
+  id: string;
+  post_id: string;
+  image_url: string;
+  alt_text: string | null;
+  sort_order: number;
+}
+
+export interface GalleryPost {
+  id: string;
+  title: string;
+  title_zh: string | null;
+  description: string | null;
+  description_zh: string | null;
+  event_date: string | null;
+  status: ContentStatus;
+  created_at: string;
+  updated_at: string;
+  images: GalleryImage[];
+}

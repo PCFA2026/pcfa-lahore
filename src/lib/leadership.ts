@@ -27,12 +27,12 @@ export const leaders: Leader[] = [
   {
     name: "Ms. Khadija Amer",
     titleKey: "vicePresident",
-    photo: "/images/khadija-amer-placeholder.png",
+    photo: "/photos/Founding Members/Ms. Khadija Amer.jpeg",
   },
   {
     name: "Dr. Kiran Khurshid",
     titleKey: "vicePresident",
-    photo: "/photos/founding new/Dr. Kiran Khurshid,.png",
+    photo: "/photos/Founding Members/Dr. Kiran Khurshid.jpeg",
   },
   {
     name: "Mr. Asad Sultan Gondal",

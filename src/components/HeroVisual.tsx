@@ -8,9 +8,10 @@ interface Props {
   alt: string;
   label: string;
   sublabel?: string;
+  fit?: "cover" | "contain";
 }
 
-export default function HeroVisual({ src, alt, label, sublabel }: Props) {
+export default function HeroVisual({ src, alt, label, sublabel, fit = "cover" }: Props) {
   const [failed, setFailed] = useState(false);
 
   return (
@@ -38,7 +39,7 @@ export default function HeroVisual({ src, alt, label, sublabel }: Props) {
           alt={alt}
           fill
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="object-cover"
+          className={fit === "contain" ? "object-contain" : "object-cover"}
           onError={() => setFailed(true)}
         />
       )}

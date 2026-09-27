@@ -8,6 +8,7 @@ import FoundingMembersSection from "@/components/FoundingMembersSection";
 import HeroVisual from "@/components/HeroVisual";
 import LeadershipSection from "@/components/LeadershipSection";
 import MembershipForm from "@/components/MembershipForm";
+import EventsSection from "@/components/EventsSection";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 
@@ -18,7 +19,7 @@ export default function HomePage() {
     <div>
       <section id="home" className="scroll-mt-16 relative isolate overflow-hidden bg-brand-blue text-white">
         <Image
-          src="/images/pcfa-first-event.jpg"
+          src="/photos/main flag home.jpeg"
           alt=""
           fill
           preload
@@ -28,8 +29,14 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-blue via-brand-blue/90 to-brand-blue/45" />
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-brand-red" />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-32">
+          <div className="absolute right-8 top-8 hidden rounded-lg border border-brand-red/60 bg-brand-blue/85 px-5 py-3 shadow-xl backdrop-blur-sm lg:block">
+            <p className="whitespace-nowrap text-sm font-extrabold uppercase tracking-[0.12em] text-white">{t.home.slogan}</p>
+          </div>
           <div className="max-w-3xl">
             <div>
+              <p className="hero-entrance mb-4 text-sm font-bold uppercase tracking-[0.18em] text-brand-red lg:hidden" style={{ animationDelay: "50ms" }}>
+                {t.home.slogan}
+              </p>
               <h1 className="hero-entrance text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl" style={{ animationDelay: "100ms" }}>{t.home.heroTitle}</h1>
               <p className="hero-entrance mt-5 text-sm font-medium text-white/85 sm:text-base" style={{ animationDelay: "200ms" }}>{t.home.heroSubtitle}</p>
               <p className="hero-entrance mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg" style={{ animationDelay: "300ms" }}>{t.home.heroIntro}</p>
@@ -42,44 +49,48 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="hero-entrance mt-10 max-w-xl rounded-xl border border-white/20 bg-brand-blue/55 p-3 shadow-lg backdrop-blur-sm" style={{ animationDelay: "550ms" }}>
-              <p className="px-1 pb-3 text-[10px] font-bold uppercase tracking-[0.16em] text-white/75 sm:text-xs">
-                {t.home.diplomaticEyebrow}
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                <figure className="flex items-center gap-3 rounded-lg bg-white/10 p-3">
-                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/50 sm:h-20 sm:w-20">
-                    <HeroVisual src="/images/Xi Jinping new.jpeg" alt={t.home.xiCaption} label="Xi Jinping" />
-                  </div>
-                  <figcaption className="text-xs font-medium leading-snug text-white/90">
-                    <span className="block">Xi Jinping</span>
-                    <span className="block">President</span>
-                    <span className="block">People&apos;s Republic of China</span>
-                  </figcaption>
-                </figure>
-                <figure className="flex items-center gap-3 rounded-lg bg-white/10 p-3">
-                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/50 sm:h-20 sm:w-20">
-                    <HeroVisual src="/images/Muhammad Shehbaz Sharif.jpeg" alt={t.home.shehbazCaption} label="Muhammad Shehbaz Sharif" />
-                  </div>
-                  <figcaption className="text-xs font-medium leading-snug text-white/90">
-                    <span className="block">Mian Muhammad Shehbaz Sharif</span>
-                    <span className="block">Prime Minister</span>
-                    <span className="block">Islamic Republic of Pakistan</span>
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section className="bg-brand-light py-20 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeading eyebrow={t.home.honors.eyebrow} title={t.home.honors.title} center />
+          </Reveal>
+          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            {[
+              { image: "/images/Xi Jinping new.jpeg", person: t.home.honors.xi },
+              { image: "/images/Muhammad Shehbaz Sharif.jpeg", person: t.home.honors.shehbaz },
+              { image: "/images/Sun Yan, the Consul General of the People's Republic of China in Lahore.jpeg", person: t.home.honors.sunYan },
+            ].map(({ image, person }, index) => (
+              <Reveal key={person.name} delay={index * 90}>
+                <article className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                  <div className="aspect-[4/5] w-full">
+                    <HeroVisual src={image} alt={person.name} label={person.name} />
+                  </div>
+                  <div className="p-5 text-center">
+                    <h3 className="font-bold text-brand-blue">{person.name}</h3>
+                    <p className="mt-2 text-sm font-semibold text-brand-red">{person.role}</p>
+                    <p className="mt-1 text-sm text-brand-slate">{person.country}</p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={200} className="mx-auto mt-10 max-w-3xl text-center">
+            <p className="text-lg leading-relaxed text-brand-slate">{t.home.consulText}</p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
         <Reveal><SectionHeading eyebrow={t.home.eventEyebrow} title={t.home.eventTitle} center /></Reveal>
-        <div className="mt-12 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div className="mt-12 grid lg:grid-cols-[1.45fr_0.75fr] gap-10 lg:gap-14 items-center">
           <Reveal delay={100} className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
             <figure>
-            <div className="aspect-[3/2] w-full">
-              <HeroVisual src="/images/pcfa-first-event.jpg" alt={t.home.eventTitle} label={t.home.eventEyebrow} sublabel={t.home.eventTitle} />
+            <div className="aspect-video w-full">
+              <HeroVisual src="/photos/innaugral meetring.jpeg" alt={t.home.eventTitle} label={t.home.eventEyebrow} sublabel={t.home.eventTitle} fit="contain" />
             </div>
             <figcaption className="px-4 py-3 text-center text-sm font-medium text-brand-blue">
               {t.home.eventTitle}
@@ -93,39 +104,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-brand-light py-20 sm:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-[0.7fr_1.3fr] gap-10 sm:gap-14 items-center">
-          <Reveal delay={100} className="md:order-2 group max-w-sm mx-auto w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
-            <figure>
-            <div className="aspect-[3/4] w-full">
-              <HeroVisual
-                src="/images/Sun Yan, the Consul General of the People's Republic of China in Lahore.jpeg"
-                alt={t.home.consulTitle}
-                label={t.home.consulEyebrow}
-                sublabel={t.home.consulRole}
-              />
-            </div>
-            </figure>
-          </Reveal>
-          <Reveal delay={180} className="md:order-1">
-            <p className="text-brand-red font-semibold tracking-widest uppercase text-sm">{t.home.consulEyebrow}</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-brand-blue">{t.home.consulTitle}</h2>
-            <p className="mt-3 font-semibold text-brand-slate">{t.home.consulRole}</p>
-            <p className="mt-5 text-brand-slate text-lg leading-relaxed">{t.home.consulText}</p>
-          </Reveal>
-        </div>
-      </section>
-
       <AboutSection />
-      <LeadershipSection />
+      <EventsSection limit={3} showViewAll />
       <FoundingMembersSection />
+      <LeadershipSection />
       <MembershipForm />
       <section className="bg-brand-blue px-4 py-16 text-center text-white sm:py-20">
         <Reveal className="mx-auto max-w-2xl">
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-red">PCFA Lahore</p>
-          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Our Growing Community</h2>
-          <p className="mt-4 text-lg leading-relaxed text-white/85">Discover the members and alumni who are helping strengthen Pakistan-China friendship.</p>
-          <Link href="/community" className="mt-7 inline-flex rounded-lg bg-white px-6 py-3 font-bold text-brand-blue transition-colors hover:bg-brand-light">View Our Community</Link>
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-red">{t.home.communityEyebrow}</p>
+          <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">{t.home.communityTitle}</h2>
+          <p className="mt-4 text-lg leading-relaxed text-white/85">{t.home.communityText}</p>
+          <Link href="/community" className="mt-7 inline-flex rounded-lg bg-white px-6 py-3 font-bold text-brand-blue transition-colors hover:bg-brand-light">{t.home.communityButton}</Link>
         </Reveal>
       </section>
     </div>

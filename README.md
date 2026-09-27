@@ -151,3 +151,22 @@ supabase/schema.sql           # Database schema + RLS
 3. **Newsletter** — sent to all approved members from the admin panel.
 
 <!-- deployment -->
+
+## Events and Gallery
+
+The public site now has `/events` and `/gallery` routes, with a small upcoming-events teaser on the homepage. Titles and descriptions can be entered in English and Chinese; published content is visible to visitors, while drafts remain private.
+
+To enable this feature in Supabase:
+
+1. Run the current `supabase/schema.sql` in **SQL Editor**.
+2. In **Storage**, create a bucket named `gallery` and mark it **Public**.
+3. Sign in at `/admin` and use the **Events** and **Gallery** tabs. Images upload through the protected server route, so the service-role key is never exposed to the browser.
+
+For the existing Cloudflare deployment workflow:
+
+```bash
+npm run build:vinext
+npx wrangler deploy --config dist/server/wrangler.json --secrets-file .env.local
+```
+
+Do not commit `.env.local`; it contains the Supabase service-role key and other credentials.

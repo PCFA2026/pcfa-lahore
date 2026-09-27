@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import Reveal from "./Reveal";
+import { useLang } from "@/lib/i18n";
 
 type FormType = "honorary" | "alumni";
 
@@ -19,6 +20,7 @@ const inputClass = "w-full rounded-lg border border-slate-300 px-3 py-2.5 text-s
 const labelClass = "block text-sm font-medium text-brand-slate mb-1.5";
 
 export default function MembershipForm() {
+  const { t } = useLang();
   const [type, setType] = useState<FormType>("honorary");
   const [form, setForm] = useState<FormState>(empty);
   const [submitting, setSubmitting] = useState(false);
@@ -27,6 +29,12 @@ export default function MembershipForm() {
 
   const isAlumni = type === "alumni";
   const update = (key: keyof FormState, value: string) => setForm((current) => ({ ...current, [key]: value }));
+
+  useEffect(() => {
+    if (window.location.search.includes("form=alumni")) {
+      queueMicrotask(() => setType("alumni"));
+    }
+  }, []);
 
   function selectType(nextType: FormType) {
     setType(nextType);
@@ -45,11 +53,11 @@ export default function MembershipForm() {
       });
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
-        throw new Error(data.error || "Submission failed");
+        throw new Error(data.error || t.membershipForm.submissionFailed);
       }
       setDone(true);
     } catch (submissionError) {
-      setError(submissionError instanceof Error ? submissionError.message : "Submission failed");
+      setError(submissionError instanceof Error ? submissionError.message : t.membershipForm.submissionFailed);
     } finally {
       setSubmitting(false);
     }
@@ -60,9 +68,9 @@ export default function MembershipForm() {
       <section id="membership" className="scroll-mt-16 bg-brand-light py-20 sm:py-24">
         <Reveal className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <div className="w-16 h-16 mx-auto rounded-full bg-brand-red/10 flex items-center justify-center mb-6">✓</div>
-          <h2 className="text-3xl font-bold text-brand-blue">Membership Activated</h2>
-          <p className="mt-4 text-brand-slate text-lg leading-relaxed">Thank you for joining PCFA Lahore. Your information has been added to our member community.</p>
-          <Link href="/#home" className="inline-block mt-8 bg-brand-blue text-white font-bold px-7 py-3 rounded-lg hover:bg-brand-blue-dark transition-colors">Back to Home</Link>
+          <h2 className="text-3xl font-bold text-brand-blue">{t.membershipForm.submittedTitle}</h2>
+          <p className="mt-4 text-brand-slate text-lg leading-relaxed">{t.membershipForm.submittedText}</p>
+          <Link href="/#home" className="inline-block mt-8 bg-brand-blue text-white font-bold px-7 py-3 rounded-lg hover:bg-brand-blue-dark transition-colors">{t.membershipForm.backHome}</Link>
         </Reveal>
       </section>
     );
@@ -72,55 +80,55 @@ export default function MembershipForm() {
     <section id="membership" className="scroll-mt-16 bg-brand-light py-20 sm:py-24">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <Reveal className="text-center">
-          <p className="text-brand-red font-semibold tracking-widest uppercase text-sm">Join PCFA Lahore</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-brand-blue">Apply to Join</h2>
-          <p className="mt-4 text-brand-slate text-lg leading-relaxed">Choose the application that best reflects your connection with PCFA Lahore.</p>
+          <p className="text-brand-red font-semibold tracking-widest uppercase text-sm">{t.membershipForm.eyebrow}</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-brand-blue">{t.membershipForm.title}</h2>
+          <p className="mt-4 text-brand-slate text-lg leading-relaxed">{t.membershipForm.intro}</p>
         </Reveal>
 
-        <Reveal delay={80} className="mt-10 grid sm:grid-cols-2 gap-4" role="tablist" aria-label="Application type">
+        <Reveal delay={80} className="mt-10 grid sm:grid-cols-2 gap-4" role="tablist" aria-label={t.membershipForm.title}>
           <button type="button" onClick={() => selectType("honorary")} className={`rounded-xl text-left p-5 border-2 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${!isAlumni ? "border-brand-blue bg-white" : "border-transparent bg-white/70 hover:border-slate-300"}`}>
-            <span className="text-sm font-bold text-brand-blue">Honorary Membership</span>
-            <span className="block mt-2 text-sm leading-relaxed text-brand-slate">For individuals who wish to support PCFA Lahore and Pakistan-China friendship.</span>
+            <span className="text-sm font-bold text-brand-blue">{t.membershipForm.honoraryTitle}</span>
+            <span className="block mt-2 text-sm leading-relaxed text-brand-slate">{t.membershipForm.honoraryDescription}</span>
           </button>
           <button type="button" onClick={() => selectType("alumni")} className={`rounded-xl text-left p-5 border-2 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${isAlumni ? "border-brand-blue bg-white" : "border-transparent bg-white/70 hover:border-slate-300"}`}>
-            <span className="text-sm font-bold text-brand-blue">Alumni Chapter</span>
-            <span className="block mt-2 text-sm leading-relaxed text-brand-slate">For Pakistanis who have studied at an educational institution in China.</span>
+            <span className="text-sm font-bold text-brand-blue">{t.membershipForm.alumniTitle}</span>
+            <span className="block mt-2 text-sm leading-relaxed text-brand-slate">{t.membershipForm.alumniDescription}</span>
           </button>
         </Reveal>
 
         <Reveal delay={150}>
         <form onSubmit={onSubmit} className="mt-6 bg-white border border-slate-200 rounded-xl p-5 sm:p-8 space-y-5 shadow-sm transition-shadow duration-200 hover:shadow-md">
           <div className="border-b border-slate-200 pb-5">
-            <h3 className="text-xl font-bold text-brand-blue">{isAlumni ? "Alumni Chapter Membership Form" : "Honorary Membership Form"}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-brand-slate">{isAlumni ? "Stay connected through social, academic, cultural and networking activities organised by PCFA Lahore." : "Help strengthen people-to-people contact, mutual understanding, friendship and cooperation between Pakistan and China."}</p>
+            <h3 className="text-xl font-bold text-brand-blue">{isAlumni ? t.membershipForm.alumniFormTitle : t.membershipForm.honoraryFormTitle}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-brand-slate">{isAlumni ? t.membershipForm.alumniFormIntro : t.membershipForm.honoraryFormIntro}</p>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-5">
-            <Field label="Name" required><input required className={inputClass} value={form.full_name} onChange={(event) => update("full_name", event.target.value)} /></Field>
-            <Field label="Email" required><input required type="email" className={inputClass} value={form.email} onChange={(event) => update("email", event.target.value)} /></Field>
+            <Field label={t.membershipForm.name} required><input required className={inputClass} value={form.full_name} onChange={(event) => update("full_name", event.target.value)} /></Field>
+            <Field label={t.membershipForm.email} required><input required type="email" className={inputClass} value={form.email} onChange={(event) => update("email", event.target.value)} /></Field>
           </div>
-          {!isAlumni && <Field label="Father / Husband Name" required><input required className={inputClass} value={form.father_husband_name} onChange={(event) => update("father_husband_name", event.target.value)} /></Field>}
-          <Field label="Residential Address" required><textarea required rows={3} className={inputClass} value={form.residential_address} onChange={(event) => update("residential_address", event.target.value)} /></Field>
+          {!isAlumni && <Field label={t.membershipForm.fatherHusbandName} required><input required className={inputClass} value={form.father_husband_name} onChange={(event) => update("father_husband_name", event.target.value)} /></Field>}
+          <Field label={t.membershipForm.residentialAddress} required><textarea required rows={3} className={inputClass} value={form.residential_address} onChange={(event) => update("residential_address", event.target.value)} /></Field>
           <div className="grid sm:grid-cols-2 gap-5">
-            <Field label="Cell Number"><input type="tel" className={inputClass} value={form.phone} onChange={(event) => update("phone", event.target.value)} /></Field>
-            <Field label="Profession / Designation"><input className={inputClass} value={form.designation} onChange={(event) => update("designation", event.target.value)} /></Field>
+            <Field label={t.membershipForm.cellNumber}><input type="tel" className={inputClass} value={form.phone} onChange={(event) => update("phone", event.target.value)} /></Field>
+            <Field label={t.membershipForm.professionDesignation}><input className={inputClass} value={form.designation} onChange={(event) => update("designation", event.target.value)} /></Field>
           </div>
-          <Field label="Office Address"><input className={inputClass} value={form.office_address} onChange={(event) => update("office_address", event.target.value)} /></Field>
+          <Field label={t.membershipForm.officeAddress}><input className={inputClass} value={form.office_address} onChange={(event) => update("office_address", event.target.value)} /></Field>
           {isAlumni && <>
-            <Field label="Name of Chinese Institution and City"><input className={inputClass} value={form.chinese_institution_city} onChange={(event) => update("chinese_institution_city", event.target.value)} /></Field>
+            <Field label={t.membershipForm.chineseInstitutionCity}><input className={inputClass} value={form.chinese_institution_city} onChange={(event) => update("chinese_institution_city", event.target.value)} /></Field>
             <div className="grid sm:grid-cols-2 gap-5">
-              <Field label="Degree / Diploma / Certification"><input className={inputClass} value={form.qualification} onChange={(event) => update("qualification", event.target.value)} /></Field>
-              <Field label="Year of Degree / Diploma / Certification"><input className={inputClass} value={form.qualification_year} onChange={(event) => update("qualification_year", event.target.value)} /></Field>
+              <Field label={t.membershipForm.qualification}><input className={inputClass} value={form.qualification} onChange={(event) => update("qualification", event.target.value)} /></Field>
+              <Field label={t.membershipForm.qualificationYear}><input className={inputClass} value={form.qualification_year} onChange={(event) => update("qualification_year", event.target.value)} /></Field>
             </div>
           </>}
           <fieldset>
-            <legend className={labelClass}>{isAlumni ? "I hereby apply for membership of the PCFA Alumni Chapter." : "I hereby apply for honorary membership of PCFA Lahore."} <span className="text-brand-red">*</span></legend>
+            <legend className={labelClass}>{isAlumni ? t.membershipForm.alumniDeclaration : t.membershipForm.honoraryDeclaration} <span className="text-brand-red">*</span></legend>
             <div className="flex gap-5 text-sm text-brand-slate">
-              {(["yes", "no"] as const).map((option) => <label key={option} className="flex items-center gap-2 capitalize"><input required type="radio" name="honorary_membership" value={option} checked={form.honorary_membership === option} onChange={(event) => update("honorary_membership", event.target.value)} />{option}</label>)}
+              {(["yes", "no"] as const).map((option) => <label key={option} className="flex items-center gap-2"><input required type="radio" name="honorary_membership" value={option} checked={form.honorary_membership === option} onChange={(event) => update("honorary_membership", event.target.value)} />{option === "yes" ? t.membershipForm.yes : t.membershipForm.no}</label>)}
             </div>
           </fieldset>
           {error && <p className="text-brand-red text-sm font-medium">{error}</p>}
-          <button type="submit" disabled={submitting} className="w-full bg-brand-blue text-white font-bold py-3 rounded-lg hover:bg-brand-blue-dark disabled:opacity-60 transition-colors">{submitting ? "Submitting..." : `Submit ${isAlumni ? "Alumni" : "Membership"} Application`}</button>
+          <button type="submit" disabled={submitting} className="w-full bg-brand-blue text-white font-bold py-3 rounded-lg hover:bg-brand-blue-dark disabled:opacity-60 transition-colors">{submitting ? t.membershipForm.submitting : isAlumni ? t.membershipForm.submitAlumni : t.membershipForm.submitMembership}</button>
         </form>
         </Reveal>
       </div>

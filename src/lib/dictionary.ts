@@ -6,6 +6,9 @@ export interface Dict {
     about: string;
     leadership: string;
     membership: string;
+    community: string;
+    events: string;
+    gallery: string;
   };
   footer: {
     aboutTitle: string;
@@ -66,6 +69,24 @@ export interface Dict {
     alumniText: string;
     membershipTitle: string;
     membershipText: string;
+    slogan: string;
+    xiName: string;
+    xiRole: string;
+    xiCountry: string;
+    shehbazName: string;
+    shehbazRole: string;
+    shehbazCountry: string;
+    communityEyebrow: string;
+    communityTitle: string;
+    communityText: string;
+    communityButton: string;
+    honors: {
+      eyebrow: string;
+      title: string;
+      xi: { name: string; role: string; country: string };
+      shehbaz: { name: string; role: string; country: string };
+      sunYan: { name: string; role: string; country: string };
+    };
   };
   about: {
     title: string;
@@ -87,12 +108,14 @@ export interface Dict {
     collaborationText: string;
     alumniTitle: string;
     alumniText: string;
+    alumniButton: string;
     membershipTitle: string;
     membershipText: string;
     ctaTitle: string;
     ctaText: string;
     ctaButton: string;
     associationLabel: string;
+    alumniLabel: string;
     countriesLabel: string;
     directionLabel: string;
     focusLabel: string;
@@ -150,6 +173,52 @@ export interface Dict {
       required: string;
     };
   };
+  membershipForm: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    honoraryTitle: string;
+    honoraryDescription: string;
+    alumniTitle: string;
+    alumniDescription: string;
+    honoraryFormTitle: string;
+    alumniFormTitle: string;
+    honoraryFormIntro: string;
+    alumniFormIntro: string;
+    name: string;
+    email: string;
+    fatherHusbandName: string;
+    residentialAddress: string;
+    cellNumber: string;
+    professionDesignation: string;
+    officeAddress: string;
+    chineseInstitutionCity: string;
+    qualification: string;
+    qualificationYear: string;
+    honoraryDeclaration: string;
+    alumniDeclaration: string;
+    yes: string;
+    no: string;
+    submitMembership: string;
+    submitAlumni: string;
+    submitting: string;
+    submittedTitle: string;
+    submittedText: string;
+    backHome: string;
+    submissionFailed: string;
+  };
+  community: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    members: string;
+    alumni: string;
+    directoryLabel: string;
+    emptyMembers: string;
+    emptyAlumni: string;
+  };
+  events: { eyebrow: string; title: string; intro: string; viewAll: string; noEvents: string; location: string; };
+  gallery: { eyebrow: string; title: string; intro: string; noPosts: string; previous: string; next: string; close: string; };
   admin: {
     loginTitle: string;
     loginSubtitle: string;
@@ -162,6 +231,8 @@ export interface Dict {
     applications: string;
     members: string;
     newsletter: string;
+    events: string;
+    gallery: string;
     pending: string;
     approved: string;
     rejected: string;

@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import { isLocalTestMode, localMembers } from "@/lib/local-test-store";
 import { supabaseService } from "@/lib/supabase";
 
-/** Public directory: only name, designation, and member type are exposed. */
+/** Public directory: only member name and directory type are exposed. */
 export async function GET() {
   if (isLocalTestMode()) {
-    const members = localMembers().map(({ full_name, designation, application_type }) => ({ full_name, designation, application_type }));
+    const members = localMembers().map(({ full_name, application_type }) => ({ full_name, application_type }));
     return NextResponse.json({ members });
   }
 
@@ -13,7 +13,7 @@ export async function GET() {
 
   const { data, error } = await supabaseService
     .from("approved_members")
-    .select("full_name, designation, application_type")
+    .select("full_name, application_type")
     .order("full_name", { ascending: true });
 
   if (error) {

@@ -55,7 +55,7 @@ export default function MemberCard({ leader, t, featured = false }: Props) {
       </div>
 
       <div>
-        {featured && <p className="text-brand-red text-xs font-bold tracking-widest uppercase mb-3">PCFA Lahore</p>}
+        {featured && <p className="text-brand-red text-xs font-bold tracking-widest uppercase mb-3">{t.eyebrow}</p>}
         <h3 className={`${featured ? "text-2xl sm:text-3xl text-white" : "text-lg text-brand-blue"} font-bold leading-snug`}>
           {leader.name}
         </h3>

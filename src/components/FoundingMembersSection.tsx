@@ -22,8 +22,8 @@ export default function FoundingMembersSection() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:auto-rows-fr sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {foundingMembers.map((member, index) => (
             <Reveal key={member.name} delay={(index % 3) * 80} className="h-full">
-            <article className="group h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md sm:p-7">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-brand-light">
+            <article className="group h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-brand-red/40 hover:shadow-md sm:p-7">
+              <div className="relative aspect-square overflow-hidden rounded-lg bg-brand-light ring-4 ring-brand-light transition-all duration-200 group-hover:ring-brand-red/40">
                 {member.photo ? (
                   <Image
                     src={member.photo}

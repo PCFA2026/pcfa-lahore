@@ -1,7 +1,7 @@
 "use client";
 
 import { useLang } from "@/lib/i18n";
-import { foundingMembers } from "@/lib/founding-members";
+import Link from "next/link";
 import Reveal from "./Reveal";
 
 function FocusIcon({ index }: { index: number }) {
@@ -17,11 +17,6 @@ function FocusIcon({ index }: { index: number }) {
 
 export default function AboutSection() {
   const { t } = useLang();
-  const stats = [
-    { value: t.about.statsYear, label: t.about.statsEstablished },
-    { value: String(foundingMembers.length), label: t.about.statsFounders },
-    { value: String(t.about.activities.length), label: t.about.statsProgrammes },
-  ];
 
   return (
     <section id="about" className="scroll-mt-16 bg-white py-24 sm:py-32">
@@ -41,17 +36,6 @@ export default function AboutSection() {
         </header>
         </Reveal>
 
-        <Reveal delay={100}>
-          <dl className="mt-12 grid grid-cols-3 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-            {stats.map((stat, index) => (
-              <div key={stat.label} className={`px-3 py-5 text-center sm:px-6 ${index > 0 ? "border-l border-slate-200" : ""}`}>
-                <dt className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-slate sm:text-xs">{stat.label}</dt>
-                <dd className="mt-1.5 text-2xl font-bold text-brand-blue sm:text-3xl">{stat.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
-
         <div className="mt-16 grid lg:grid-cols-2 gap-6 lg:gap-8">
           <Reveal delay={80}>
           <article className="h-full rounded-xl bg-brand-light p-7 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md sm:p-9">
@@ -65,6 +49,11 @@ export default function AboutSection() {
             <p className="text-brand-red text-xs font-bold tracking-widest uppercase">{t.about.countriesLabel}</p>
             <h3 className="mt-3 text-2xl font-bold text-brand-blue">{t.about.purposeTitle}</h3>
             <p className="mt-4 text-brand-slate leading-relaxed">{t.about.purposeText}</p>
+            <div className="mt-6 border-t border-slate-200 pt-6">
+              <p className="text-brand-red text-xs font-bold tracking-widest uppercase">{t.about.togetherLabel}</p>
+              <h4 className="mt-2 text-lg font-bold text-brand-blue">{t.about.collaborationTitle}</h4>
+              <p className="mt-3 text-brand-slate leading-relaxed">{t.about.collaborationText}</p>
+            </div>
           </article>
           </Reveal>
         </div>
@@ -120,16 +109,12 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <div className="mt-24 grid lg:grid-cols-2 gap-8">
-          <article className="rounded-xl border-l-4 border-brand-red bg-brand-light p-7 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md sm:p-9">
-            <p className="text-brand-red text-xs font-bold tracking-widest uppercase">{t.about.togetherLabel}</p>
-            <h3 className="mt-3 text-2xl font-bold text-brand-blue">{t.about.collaborationTitle}</h3>
-            <p className="mt-4 text-brand-slate leading-relaxed">{t.about.collaborationText}</p>
-          </article>
-          <article className="rounded-xl border-l-4 border-brand-blue p-7 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md sm:p-9">
-            <p className="text-brand-red text-xs font-bold tracking-widest uppercase">{t.about.networkLabel}</p>
+        <div className="mx-auto mt-24 max-w-3xl">
+          <article className="rounded-xl border border-slate-200 border-l-4 border-l-brand-blue bg-white p-7 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md sm:p-9">
+            <p className="text-brand-red text-xs font-bold tracking-widest uppercase">{t.about.alumniLabel}</p>
             <h3 className="mt-3 text-2xl font-bold text-brand-blue">{t.about.alumniTitle}</h3>
-            <p className="mt-4 text-brand-slate leading-relaxed">{t.about.alumniText}</p>
+            <p className="mt-4 max-w-2xl text-brand-slate leading-relaxed">{t.about.alumniText}</p>
+            <Link href="/?form=alumni#membership" className="mt-7 inline-flex rounded-lg bg-brand-blue px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-blue-dark">{t.about.alumniButton}</Link>
           </article>
         </div>
       </div>
