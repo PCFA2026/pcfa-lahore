@@ -8,10 +8,10 @@ export interface FoundingMember {
 /** Founding-member information supplied in "PCFA founding members.docx". */
 const foundingMembersSource: FoundingMember[] = [
   { name: "Prof. Dr. Khalid Manzoor Butt", role: "Dean, Faculty of Humanities and Social Sciences / Faculty of Languages and Literature, University of Central Punjab, Lahore.", photo: "/photos/Founding Members/Prof. Dr. Khalid Manzoor Butt.jpeg", photoOrientation: "square" },
-  { name: "Ms. Khadija Amer", role: "Group Director, Punjab Colleges & UCP.", photo: "/photos/Founding Members/Ms. Khadija Amer.jpeg", photoOrientation: "square" },
   { name: "Mr. Kamran Lashari", role: "Former Chief Secretary Sindh, Chairman CDA Islamabad, and DG, Walled City Lahore Authority.", photo: "/photos/Founding Members/Mr. Kamran Lashari.jpeg", photoOrientation: "square" },
   { name: "Dr. Kiran Khurshid", role: "Secretary, Food Security & Consumer Protection, Government of the Punjab, Lahore.", photo: "/photos/Founding Members/Dr. Kiran Khurshid.jpeg", photoOrientation: "square" },
   { name: "Dr. Hassan A. Shah", role: "Former Vice Chancellor, GC University Lahore; currently Dean of Sciences, FCCU.", photo: "/photos/Founding Members/Dr. Hassan A. Shah.jpeg", photoOrientation: "square" },
+  { name: "Ms. Khadija Amer", role: "Group Director, Punjab Colleges & UCP.", photo: "/photos/Founding Members/Ms. Khadija Amer.jpeg", photoOrientation: "square" },
   { name: "Mr. Hamza Tariq Sufi", role: "Director, Sufi Group of Industries.", photo: "/photos/Founding Members/Mr. Hamza Tariq Sufi.jpeg", photoOrientation: "square" },
   { name: "Mr. Asad Sultan Gondal", role: "Owner & Director, IMC Hospital, Defence, Lahore Cantt.", photo: "/photos/Founding Members/Mr. Asad Sultan Gondal.jpeg", photoOrientation: "square" },
   { name: "Mr. Rizwan Akram Sherwani", role: "Former DG, Excise and Taxation Department, Government of the Punjab.", photo: "/photos/Founding Members/Mr. Rizwan Akram Sherwani.jpeg", photoOrientation: "square" },

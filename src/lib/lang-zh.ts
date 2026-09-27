@@ -40,7 +40,7 @@ export const zh: Dict = {
     diplomaticEyebrow: "致敬领导力与友谊",
     honors: {
       eyebrow: "致敬友谊",
-      title: "领导力与荣誉",
+      title: "礼赞友谊与奉献",
       xi: { name: "习近平阁下", role: "主席", country: "中华人民共和国" },
       shehbaz: { name: "米安·穆罕默德·夏巴兹·谢里夫", role: "总理", country: "巴基斯坦伊斯兰共和国" },
       sunYan: { name: "孙岩阁下", role: "总领事", country: "中华人民共和国驻拉合尔" },

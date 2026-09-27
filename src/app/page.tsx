@@ -17,24 +17,12 @@ export default function HomePage() {
 
   return (
     <div>
-      <section id="home" className="scroll-mt-16 relative isolate overflow-hidden bg-brand-blue text-white">
-        <Image
-          src="/photos/main flag home.jpeg"
-          alt=""
-          fill
-          preload
-          sizes="100vw"
-          className="-z-20 object-cover object-center"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-blue via-brand-blue/90 to-brand-blue/45" />
+      <section id="home" className="scroll-mt-16 relative overflow-hidden bg-brand-blue text-white">
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-brand-red" />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-32">
-          <div className="absolute right-8 top-8 hidden rounded-lg border border-brand-red/60 bg-brand-blue/85 px-5 py-3 shadow-xl backdrop-blur-sm lg:block">
-            <p className="whitespace-nowrap text-sm font-extrabold uppercase tracking-[0.12em] text-white">{t.home.slogan}</p>
-          </div>
-          <div className="max-w-3xl">
-            <div>
-              <p className="hero-entrance mb-4 text-sm font-bold uppercase tracking-[0.18em] text-brand-red lg:hidden" style={{ animationDelay: "50ms" }}>
+        <div className="relative md:min-h-[34rem]">
+          <div className="relative z-10 bg-brand-blue px-4 py-20 sm:px-6 sm:py-24 md:min-h-[34rem] md:w-[60%] md:px-8 md:py-28 lg:px-[max(2rem,calc((100vw-72rem)/2))] md:pr-24 md:[clip-path:polygon(0_0,90%_0,100%_100%,0_100%)]">
+            <div className="mx-auto max-w-3xl lg:mx-0">
+              <p className="hero-entrance mb-4 text-sm font-bold uppercase tracking-[0.18em] text-brand-red sm:text-base" style={{ animationDelay: "50ms" }}>
                 {t.home.slogan}
               </p>
               <h1 className="hero-entrance text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl" style={{ animationDelay: "100ms" }}>{t.home.heroTitle}</h1>
@@ -48,6 +36,19 @@ export default function HomePage() {
                   {t.home.heroCtaSecondary}
                 </Link>
               </div>
+            </div>
+          </div>
+          <div className="relative h-52 w-full sm:h-64 md:absolute md:inset-y-0 md:right-0 md:h-auto md:w-[50%]">
+            <Image
+              src="/photos/main flag home.jpeg"
+              alt=""
+              fill
+              preload
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover object-[25%_center] md:object-[30%_center]"
+            />
+            <div className="absolute right-3 top-3 hidden rounded-lg border border-brand-red/60 bg-brand-blue/85 px-4 py-2.5 shadow-lg backdrop-blur-sm sm:block sm:right-5 sm:top-5 sm:px-5 sm:py-3">
+              <p className="whitespace-nowrap text-sm font-extrabold uppercase tracking-[0.1em] text-white sm:text-base sm:tracking-[0.12em]">{t.home.slogan}</p>
             </div>
           </div>
         </div>

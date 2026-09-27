@@ -121,8 +121,8 @@ export const en: Dict = {
     communityText: "Discover the members and alumni who are helping strengthen Pakistan-China friendship.",
     communityButton: "View Our Community",
     honors: {
-      eyebrow: "Honouring friendship",
-      title: "Leadership & Honors",
+      eyebrow: "In Tribute to Friendship",
+      title: "Honouring Friendship & Service",
       xi: { name: "His Excellency Xi Jinping", role: "President", country: "People's Republic of China" },
       shehbaz: { name: "Mian Muhammad Shehbaz Sharif", role: "Prime Minister", country: "Islamic Republic of Pakistan" },
       sunYan: { name: "His Excellency Sun Yan", role: "Consul General", country: "People's Republic of China in Lahore" },
